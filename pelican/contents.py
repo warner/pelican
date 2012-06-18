@@ -5,6 +5,7 @@ import functools
 
 from datetime import datetime
 from os import getenv
+from os.path import splitext, basename
 from sys import platform, stdin
 
 
@@ -115,6 +116,8 @@ class Page(object):
             'date': getattr(self, 'date', datetime.now()),
             'author': self.author,
             'category': getattr(self, 'category', 'misc'),
+            'filename': self.filename,
+            'basename': splitext(basename(self.filename))[0],
         }
 
     def _expand_settings(self, key):
