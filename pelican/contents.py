@@ -118,6 +118,7 @@ class Page(object):
             'category': getattr(self, 'category', 'misc'),
             'filename': self.filename,
             'basename': splitext(basename(self.filename))[0],
+            'relpath': self.metadata['relpath']
         }
 
     def _expand_settings(self, key):

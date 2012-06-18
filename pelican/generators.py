@@ -276,6 +276,10 @@ class ArticlesGenerator(Generator):
                     metadata['date'] = datetime.datetime.fromtimestamp(
                                         os.stat(f).st_ctime)
 
+            # if article_path="~/articles", and f="~/articles/blah/foo.txt",
+            # {relpath} should be "blah/foo.txt"
+            metadata['relpath'] = f[len(article_path+os.sep):]
+
             signals.article_generate_context.send(self, metadata=metadata)
             article = Article(content, metadata, settings=self.settings,
                               filename=f)
