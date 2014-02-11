@@ -153,6 +153,7 @@ class Content(object):
         slug_substitutions = self.settings.get('SLUG_SUBSTITUTIONS', ())
         metadata.update({
             'path': path_to_url(path),
+            'baserelpath': os.path.splitext(path_to_url(path))[0],
             'slug': getattr(self, 'slug', ''),
             'lang': getattr(self, 'lang', 'en'),
             'date': getattr(self, 'date', datetime.now()),
